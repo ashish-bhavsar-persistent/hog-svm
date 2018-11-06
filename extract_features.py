@@ -39,15 +39,6 @@ def test(imdir, ftdir):
     ft_dir = "{}/neg".format(ftdir)
     _hog_dir(im_dir, ft_dir) 
 
-def t0_hog():
-    im_dir = "E:/0workspace/python/ml/svmtest/data/images/neg_person" 
-    ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/neg"
-    _hog_dir(im_dir, ft_dir) 
-
-    im_dir = "E:/0workspace/python/ml/svmtest/data/images/pos_person"
-    ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/pos"
-    _hog_dir(im_dir, ft_dir) 
-    
 
 def t1_hog():
     im_dir = "E:/0workspace/python/ml/hog_svm/image/person/"

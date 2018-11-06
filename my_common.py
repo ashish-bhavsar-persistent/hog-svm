@@ -32,7 +32,7 @@ class dconfig:
         #sliding_step = (10, 10)
         #sliding_win_shape = (48, 96)
         sliding_step = (5, 5)
-        decision = 0.6   #0.5
+        decision = 0.8   #0.5
         nms_overlap = 0.3 #0.3
     
 
