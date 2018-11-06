@@ -30,6 +30,15 @@ def _hog_dir(im_dir, feat_dir):
     print('done')
 
 
+def test(imdir, ftdir):
+    im_dir = "{}/pos".format(imdir)
+    ft_dir = "{}/pos".format(ftdir)
+    _hog_dir(im_dir, ft_dir) 
+
+    im_dir = "{}/neg".format(imdir)
+    ft_dir = "{}/neg".format(ftdir)
+    _hog_dir(im_dir, ft_dir) 
+
 def t0_hog():
     im_dir = "E:/0workspace/python/ml/svmtest/data/images/neg_person" 
     ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/neg"
@@ -39,7 +48,13 @@ def t0_hog():
     ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/pos"
     _hog_dir(im_dir, ft_dir) 
     
+
+def t1_hog():
+    im_dir = "E:/0workspace/python/ml/hog_svm/image/person/"
+    ft_dir = "E:/0workspace/python/ml/hog_svm/feat/person/8.3/64x128/"
+    test(im_dir, ft_dir)
+
         
 if __name__=='__main__':
-    t0_hog()
+    t1_hog()
     print('exit')

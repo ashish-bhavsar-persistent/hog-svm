@@ -59,7 +59,7 @@ def draw_box(image, confidence, startX, startY, endX, endY):
 
     if confidence > 0:
         # display the prediction
-        label = "{}: {:.1f}".format('pr:', confidence * 100)
+        label = "  {:.1f}".format(confidence * 100)
         #print("[INFO] {}".format(label))
         y = startY - 15 if startY - 15 > 15 else startY + 15
         cv2.putText(image, label, (startX, y),
@@ -182,6 +182,6 @@ if __name__ == '__main__':
     #process_im_file('test_neg/00001169.png', 'fake/neg/', show_pic=True)
     #process_im_folder('E:/0workspace/python/ml/svmtest/INRIAPerson/Train/neg', 'fake/neg/')
     
-    process_im_folder('test_image', show_pic=True)
+    process_im_folder('test_image/test1', show_pic=True)
 
     

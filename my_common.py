@@ -5,8 +5,8 @@ from skimage.feature import hog
 
 class dconfig:
     class dataset:
-        width = 64
-        height = 128
+        #width = 64
+        #height = 128
         #width = 48
         #height = 96
         pos_fold = ''
@@ -19,10 +19,10 @@ class dconfig:
         #gamma = 0.001
         model = 'svm.model'
     class hog:
-        #pixels_per_cell = (8, 8)
-        #cells_per_block = (4, 4)
-        pixels_per_cell = (6, 6)
-        cells_per_block = (2, 2)
+        pixels_per_cell = (8, 8)
+        cells_per_block = (3, 3)
+        #pixels_per_cell = (6, 6)
+        #cells_per_block = (2, 2)
         block_norm='L2-Hys'
         multichannel=None
         #multichannel=False
@@ -31,8 +31,8 @@ class dconfig:
         sliding_win_shape = (64, 128)
         #sliding_step = (10, 10)
         #sliding_win_shape = (48, 96)
-        sliding_step = (6, 6)
-        decision = 2.0   #0.5
+        sliding_step = (5, 5)
+        decision = 0.6   #0.5
         nms_overlap = 0.3 #0.3
     
 

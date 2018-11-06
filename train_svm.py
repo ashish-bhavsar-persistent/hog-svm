@@ -89,15 +89,24 @@ def debug_train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model'):
     
     plt.show()
 
-
-def t0(debug=False):
-    neg_ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/neg"
-    pos_ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/pos"
+def test(ftdir, debug=False):
+    neg_ft_dir = "{}/neg/".format(ftdir)
+    pos_ft_dir = "{}/pos/".format(ftdir)
+    
     if debug == False:
         train_svm(pos_ft_dir, neg_ft_dir)
     else:
         debug_train_svm(pos_ft_dir, neg_ft_dir)
         
+def t0(debug=False):
+    ft_dir = "E:/0workspace/python/ml/hog_svm/feat/t0_hog/"
+    test(ft_dir)
+
+def t1():
+    #ft_dir = "E:/0workspace/python/ml/hog_svm/feat/8.3/48x96/"
+    #ft_dir = "E:/0workspace/python/ml/hog_svm/feat/8.3/64x128/"
+    ft_dir = "E:/0workspace/python/ml/hog_svm/feat/person/8.3/64x128/"
+    test(ft_dir)
     
 if __name__=='__main__':
-    t0(debug=False)
+    t1()
