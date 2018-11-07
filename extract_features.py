@@ -2,7 +2,8 @@ from skimage.io import imread
 from sklearn.externals import joblib
 import glob
 import os
-from my_common import dconfig, my_hog
+import dconfig
+from my_common import my_hog
 
 if dconfig.hog.multichannel == False:
     ismultichannel = False

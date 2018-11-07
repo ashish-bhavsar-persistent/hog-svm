@@ -7,7 +7,8 @@ import cv2
 import matplotlib.pyplot as plt 
 import os 
 
-from my_common import dconfig,sliding_window,non_max_suppression2,my_hog
+import dconfig
+from my_common import sliding_window,non_max_suppression2,my_hog
 
 
 def _hog_svm_predict(clf, im,
@@ -42,7 +43,9 @@ def _hog_svm_predict(clf, im,
                                        int(y * (downscale**scale)),  
                                        int(win_shape[0] * (downscale**scale)),
                                        int(win_shape[1] * (downscale**scale)),
-                                       clf.decision_function(fd),
+                                       #yxd, hack .....
+                                       clf.decision_function(fd) * (downscale**scale),
+                                       #clf.decision_function(fd),
                                        downscale**scale))
 
         scale += 1
@@ -182,6 +185,6 @@ if __name__ == '__main__':
     #process_im_file('test_neg/00001169.png', 'fake/neg/', show_pic=True)
     #process_im_folder('E:/0workspace/python/ml/svmtest/INRIAPerson/Train/neg', 'fake/neg/')
     
-    process_im_folder('test_image/test1', show_pic=True)
+    process_im_folder('test_image/t1', show_pic=True)
 
     

@@ -3,11 +3,10 @@ from sklearn.externals import joblib
 import glob
 import os
 import numpy as np
-from my_common import dconfig
 import matplotlib.pyplot as plt
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import ShuffleSplit
-
+import dconfig
    
 def train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model'): 
     fds = []   # features
