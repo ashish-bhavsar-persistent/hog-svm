@@ -38,14 +38,15 @@ def _hog_svm_predict(clf, im,
             pred = clf.predict(fd)
 
             if pred == 1:
-                if clf.decision_function(fd) > decision:
+                #dd = clf.decision_function(fd)
+                #yxd, hack .....
+                dd = clf.decision_function(fd) * (downscale**scale)
+                if dd > decision:
                     detections.append((int(x * (downscale**scale)),
                                        int(y * (downscale**scale)),  
                                        int(win_shape[0] * (downscale**scale)),
                                        int(win_shape[1] * (downscale**scale)),
-                                       #yxd, hack .....
-                                       clf.decision_function(fd) * (downscale**scale),
-                                       #clf.decision_function(fd),
+                                       dd,
                                        downscale**scale))
 
         scale += 1
@@ -185,6 +186,6 @@ if __name__ == '__main__':
     #process_im_file('test_neg/00001169.png', 'fake/neg/', show_pic=True)
     #process_im_folder('E:/0workspace/python/ml/svmtest/INRIAPerson/Train/neg', 'fake/neg/')
     
-    process_im_folder('test_image/t1', show_pic=True)
+    process_im_folder('test_image/test3', show_pic=True)
 
     

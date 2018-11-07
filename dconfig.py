@@ -37,3 +37,8 @@ class detector:
     #sliding_step = (10, 10)
     decision = 0.8   #0.5
     nms_overlap = 0.5 #0.3
+
+
+svm.model='feat/8.3/48x96/svm.model'
+detector.sliding_win_shape = (48,96)
+detector.decision = 3.0
