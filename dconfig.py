@@ -1,23 +1,9 @@
 # -*- coding: utf-8 -*-
 
 class dataset:
-    #width = 64
-    #height = 128
-    #width = 48
-    #height = 96
     pos_fold = ''
     neg_fold = ''
-    
-    
-class svm:
-    #kernel = 'linear'
-    #C = 1000
-    kernel = 'rbf'
-    C = 100
-    #gamma = 0.001
-    model = 'svm.model'
-    
-    
+
 class hog:
     pixels_per_cell = (8, 8)
     cells_per_block = (3, 3)
@@ -27,7 +13,18 @@ class hog:
     multichannel=None
     #multichannel=False
     
+class spliter:
+    test_size = 0.2
+    random_state = 0
     
+class svm:
+    #kernel = 'linear'
+    #C = 1000
+    kernel = 'rbf'
+    C = 100
+    #gamma = 0.001
+    model = 'svm.model'
+        
 class detector:
     downscale = 1.25
     sliding_win_shape = (64, 128)
@@ -39,6 +36,10 @@ class detector:
     nms_overlap = 0.5 #0.3
 
 
-svm.model='feat/8.3/48x96/svm.model'
+svm.kernel = 'linear'
 detector.sliding_win_shape = (48,96)
+svm.model='feat/8.3/48x96/svm.model'
 detector.decision = 3.0
+
+#svm.model='svm.model'
+#detector.decision = 30
