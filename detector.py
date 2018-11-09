@@ -6,6 +6,7 @@ from sklearn.externals import joblib
 import cv2
 import matplotlib.pyplot as plt 
 import os 
+import imutils
 
 import dconfig
 from my_common import sliding_window,non_max_suppression2,my_hog
@@ -33,6 +34,7 @@ def hog_svm_predict(clf, im,
                      sliding_step = dconfig.detector.sliding_step,
                      downscale = dconfig.detector.downscale,
                      decision = dconfig.detector.decision):
+    print('hog_svm_predict...')
     detections = []
     scale = 0
     for im_scaled in pyramid_gaussian(im, downscale=downscale):
@@ -65,15 +67,23 @@ def hog_svm_predict(clf, im,
                                        downscale**scale))
 
         scale += 1
-        
+    
+    print('hog_svm_predict ok.')
+    
     return detections
 
 
 def _detect_boxes(file_path, clf, draw_detects = False):
     (filepath, tempfilename) = os.path.split(file_path)
     (filename, extension) = os.path.splitext(tempfilename)    
-    
+    print('detect boxes for {}'.format(tempfilename))
+
     im = io.imread(file_path)
+    
+    # if pic is too large, time consuming, so limit it
+    im = imutils.resize(im, width = min(400, im.shape[1]))
+    print('im.shape:{}'.format(im.shape))
+    
     #print('loading model...')      
     #clf = joblib.load(dconfig.svm.model)
     #print('loaded model')      
@@ -125,42 +135,6 @@ def draw_boxes(file_path, clf):
     plt.show()
 
 
-def detect_and_save_boxes(file_path, save_dir):    
-    im, detects, picks = _detect_boxes(file_path, draw_detects=True)
-    if im is None:
-        return
-    
-    (filepath, tempfilename) = os.path.split(file_path)
-    (filename, extension) = os.path.splitext(tempfilename)
-    
-    for ((x, y, w, h, prob, ss), i) in zip(detects[picks], range(len(picks))):
-        x = int(x)
-        y = int(y)
-        w = int(w)
-        h = int(h)
-        
-        if not os.path.isdir(save_dir):
-            os.makedirs(save_dir)
-    
-        name = "%s/%s_%d%s" % (save_dir, filename, i, extension)
-        #print('save{}:{}'.format(i, name))
-        #TODO: find a better way to do the rescale .... 
-        #FIXME:            
-        scale = 0
-        if ss > 1:
-            print('scale note:{}'.format(name))
-            for im_scaled in pyramid_gaussian(im, max_layer = 1, downscale = ss):
-                if scale == 1:
-                    x = int(x/ss)
-                    y = int(y/ss)
-                    w = int(w/ss)
-                    h = int(h/ss)
-                    io.imsave(name, im_scaled[y:y+h, x:x+w])
-                scale += 1
-        else:
-            io.imsave(name, im[y:y+h, x:x+w])
-    
-
 def process_im_folder(im_dir, save_dir=None, show_pic=False):
     '''
     loop each image in $im_dir
@@ -189,6 +163,6 @@ if __name__ == '__main__':
     #process_im_file('test_neg/00001169.png', 'fake/neg/', show_pic=True)
     #process_im_folder('E:/0workspace/python/ml/svmtest/INRIAPerson/Train/neg', 'fake/neg/')
     
-    process_im_folder('test_image/test1', show_pic=True)
+    process_im_folder('test_image/test2', show_pic=True)
 
     

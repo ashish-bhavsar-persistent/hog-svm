@@ -27,15 +27,16 @@ def load_data(pos_ft_dir, neg_ft_dir):
     return X, y
 
 
-def train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model'):
+def train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model', test=False):
     
     X, y = load_data(pos_ft_dir, neg_ft_dir)
 
-    X_train, X_test, y_train, y_test = train_test_split(
-            X, y, 
-            test_size=dconfig.spliter.test_size, 
-            random_state=dconfig.spliter.random_state)
-    print("len(X_train):{}, len(y_train):{}".format(len(X_train), len(y_train)))
+    if test:
+        X_train, X_test, y_train, y_test = train_test_split(
+                X, y, 
+                test_size=dconfig.spliter.test_size, 
+                random_state=dconfig.spliter.random_state)
+        print("len(X_train):{}, len(y_train):{}".format(len(X_train), len(y_train)))
 
     print("Training a {} SVM Classifier...".format(dconfig.svm.kernel))
     clf = SVC(C=dconfig.svm.C, kernel=dconfig.svm.kernel)
@@ -43,9 +44,10 @@ def train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model'):
 
     joblib.dump(clf, mode_name)
     print("model saved as:{}".format(mode_name))
-    
-    score = clf.score(X_test, y_test)
-    print("model score:{}".format(score))
+
+    if test:    
+        score = clf.score(X_test, y_test)
+        print("model score:{}".format(score))
     
     
 def debug_train_svm(pos_ft_dir, neg_ft_dir, mode_name='svm.model'):

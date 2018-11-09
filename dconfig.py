@@ -34,12 +34,13 @@ class detector:
     #sliding_step = (10, 10)
     decision = 0.8   #0.5
     nms_overlap = 0.5 #0.3
+    hard_decision = 0.7
 
-
-svm.kernel = 'linear'
+hog.multichannel = True
 detector.sliding_win_shape = (48,96)
 svm.model='feat/8.3/48x96/svm.model'
 detector.decision = 3.0
 
+#svm.kernel = 'linear'
 #svm.model='svm.model'
 #detector.decision = 30
